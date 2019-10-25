@@ -245,6 +245,8 @@
     <Content Include="Views\Superheroes\Create.cshtml" />
     <Content Include="Views\Superheroes\Edit.cshtml" />
     <Content Include="Views\Superheroes\Details.cshtml" />
+    <Content Include="Views\Superheroes\Delete.cshtml" />
+    <Content Include="Views\Superheroes\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
