@@ -17,7 +17,6 @@ namespace superheroCreator.Controllers
         // GET: Superheroes
         public ActionResult Index()
         {
-
             return View();
         }
         // GET: List
@@ -30,7 +29,8 @@ namespace superheroCreator.Controllers
         // GET: Superheroes/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Superhero superhero = db.Superheroes.Where(s => s.Id == id).FirstOrDefault();
+            return View(superhero);
         }
 
         // GET: Superheroes/Create
@@ -69,20 +69,20 @@ namespace superheroCreator.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(id);
             }
         }
 
         // GET: Superheroes/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Superhero superhero = db.Superheroes.Where(s => s.Id == id).FirstOrDefault();
+            return View(superhero);
         }
 
         // POST: Superheroes/Delete/5
@@ -91,13 +91,12 @@ namespace superheroCreator.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
+                db.Superheroes.Remove(superhero);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(id);
             }
         }
     }
