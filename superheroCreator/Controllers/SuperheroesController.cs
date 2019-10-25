@@ -17,7 +17,7 @@ namespace superheroCreator.Controllers
         // GET: Superheroes
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("List");
         }
         // GET: List
         public ActionResult List()
@@ -69,6 +69,12 @@ namespace superheroCreator.Controllers
         {
             try
             {
+                var heroFromDb = db.Superheroes.Where(s => s.Id == id).FirstOrDefault();
+                heroFromDb.Name = superhero.Name;
+                heroFromDb.AlterEgo = superhero.AlterEgo;
+                heroFromDb.PrimaryAbility = superhero.PrimaryAbility;
+                heroFromDb.SecondaryAbility = superhero.SecondaryAbility;
+                heroFromDb.Catchphrase = superhero.Catchphrase;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -91,7 +97,8 @@ namespace superheroCreator.Controllers
         {
             try
             {
-                db.Superheroes.Remove(superhero);
+                var heroFromDb = db.Superheroes.Where(s => s.Id == superhero.Id).FirstOrDefault();
+                db.Superheroes.Remove(heroFromDb);
                 return RedirectToAction("Index");
             }
             catch
