@@ -97,8 +97,9 @@ namespace superheroCreator.Controllers
         {
             try
             {
-                var heroFromDb = db.Superheroes.Where(s => s.Id == superhero.Id).FirstOrDefault();
-                db.Superheroes.Remove(heroFromDb);
+                superhero = db.Superheroes.Where(s => s.Id == id).FirstOrDefault();
+                db.Superheroes.Remove(superhero);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
