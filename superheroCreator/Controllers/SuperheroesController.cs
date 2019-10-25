@@ -52,12 +52,13 @@ namespace superheroCreator.Controllers
         // GET: Superheroes/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Superhero superhero = db.Superheroes.Where(s => s.Id == id).FirstOrDefault();
+            return View(superhero);
         }
 
         // POST: Superheroes/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Superhero superhero)
         {
             try
             {
@@ -79,7 +80,7 @@ namespace superheroCreator.Controllers
 
         // POST: Superheroes/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Superhero superhero)
         {
             try
             {
